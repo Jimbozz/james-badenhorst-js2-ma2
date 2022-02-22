@@ -1,4 +1,5 @@
 import { books } from "./data/bookList.js";
+import { displayMessage } from "./components/displayMessage.js";
 
 let booksToRender = books;
 
@@ -22,6 +23,10 @@ function createBooks() {
   deleteIcon.forEach(function (icon) {
     icon.addEventListener("click", removeFromList);
   });
+
+  if (booksToRender.length === 0) {
+    displayMessage("error", "There are no more books left.", ".container");
+  }
 }
 
 createBooks();
@@ -40,5 +45,3 @@ function removeFromList() {
 }
 
 // const filteredBooks = books.filter(filterItems);
-
-// function filterItems(item) {}

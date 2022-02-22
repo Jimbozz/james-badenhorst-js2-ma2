@@ -26,3 +26,17 @@ body {
   background-color: white;
   list-style: none;
 }
+
+.message {
+  border: 1px solid grey;
+  color: grey;
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.message.error {
+  border-color: red;
+  color: red;
+  background: rgba(255, 0, 0, 0.144);
+}
