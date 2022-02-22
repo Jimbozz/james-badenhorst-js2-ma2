@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: rgb(240, 239, 239);
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.book-item {
+  border: 1px solid transparent;
+  padding: 1rem;
+  border-radius: 7px;
+  background-color: white;
+  list-style: none;
+}
