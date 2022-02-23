@@ -54,8 +54,9 @@ function removeFromList() {
   });
 
   listItems = newList;
-  console.log(newList);
   updateList(listItems, id);
+  console.log(newList);
+
   createList();
 }
 
@@ -64,11 +65,12 @@ function updateList(listItems, id) {
   console.log("id", id);
 
   const thisItemIndex = listItems.findIndex(function (value) {
-    console.log(id);
-    console.log(value.id);
+    // console.log(id);
+
     if (value.id === id) {
       return true;
     }
   });
-  console.log(thisItemIndex);
+
+  return listItems;
 }
