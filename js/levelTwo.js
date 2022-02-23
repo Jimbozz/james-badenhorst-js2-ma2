@@ -32,7 +32,7 @@ function createList() {
   listContainer.innerHTML = "";
 
   listItems.forEach(function (items) {
-    listContainer.innerHTML += `<li><span>${items.name}</span><i class="uis uis-times-circle" style="font-size: x-large" data-item="${items.id}"></i></li>`;
+    listContainer.innerHTML += `<li><span>${items.name}</span><i class="uis uis-times-circle" style="font-size: x-large" data-id="${items.id}"></i></li>`;
   });
 
   const deleteButton = document.querySelectorAll("li i");
@@ -42,16 +42,33 @@ function createList() {
 }
 
 function removeFromList() {
-  const deleteThisItem = event.target.dataset.item;
-  console.log(deleteThisItem);
+  const id = parseInt(event.target.dataset.id);
+  console.log(event);
 
+  // const clicked = event.target.type;
   const newList = listItems.filter(function (item) {
-    if (deleteThisItem !== item) {
+    console.log(item.id);
+    if (id !== item.id) {
       return true;
     }
   });
 
   listItems = newList;
-
+  console.log(newList);
+  updateList(listItems, id);
   createList();
+}
+
+function updateList(listItems, id) {
+  console.log("newList", listItems);
+  console.log("id", id);
+
+  const thisItemIndex = listItems.findIndex(function (value) {
+    console.log(id);
+    console.log(value.id);
+    if (value.id === parseInt(id)) {
+      return true;
+    }
+  });
+  console.log(thisItemIndex);
 }
