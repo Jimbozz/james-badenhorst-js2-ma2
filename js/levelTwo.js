@@ -1,4 +1,10 @@
-let listItems = [];
+// import createList from "./components/createList.js";
+import { saveToStorage, getFromStorage } from "./utils/storage.js";
+import { listKey } from "./utils/settings.js";
+
+let listItems = getFromStorage(listKey);
+
+createList(listItems);
 
 const input = document.querySelector("input");
 const button = document.querySelector("button");
@@ -6,10 +12,46 @@ const button = document.querySelector("button");
 button.addEventListener("click", addToList);
 
 function addToList() {
-  const newItem = input.value.trim();
-  console.log(newItem);
+  const itemValue = input.value.trim();
 
-  if (newItem.length >= 2) {
+  if (itemValue.length >= 2) {
+    const newItem = { id: Date.now(), name: itemValue };
+    console.log(newItem);
+    // createList();
+    input.value = "";
+    input.focus();
     listItems.push(newItem);
+
+    createList(listItems);
+    saveToStorage(listKey, listItems);
   }
+}
+
+function createList() {
+  const listContainer = document.querySelector("ul");
+  listContainer.innerHTML = "";
+
+  listItems.forEach(function (items) {
+    listContainer.innerHTML += `<li><span>${items.name}</span><i class="uis uis-times-circle" style="font-size: x-large" data-item="${items.id}"></i></li>`;
+  });
+
+  const deleteButton = document.querySelectorAll("li i");
+  deleteButton.forEach(function (remove) {
+    remove.addEventListener("click", removeFromList);
+  });
+}
+
+function removeFromList() {
+  const deleteThisItem = event.target.dataset.item;
+  console.log(deleteThisItem);
+
+  const newList = listItems.filter(function (item) {
+    if (deleteThisItem !== item) {
+      return true;
+    }
+  });
+
+  listItems = newList;
+
+  createList();
 }
