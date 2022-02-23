@@ -66,7 +66,7 @@ function updateList(listItems, id) {
   const thisItemIndex = listItems.findIndex(function (value) {
     console.log(id);
     console.log(value.id);
-    if (value.id === parseInt(id)) {
+    if (value.id === id) {
       return true;
     }
   });
