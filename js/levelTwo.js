@@ -16,8 +16,7 @@ function addToList() {
 
   if (itemValue.length >= 2) {
     const newItem = { id: Date.now(), name: itemValue };
-    console.log(newItem);
-    // createList();
+
     input.value = "";
     input.focus();
     listItems.push(newItem);

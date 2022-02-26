@@ -5,7 +5,6 @@ let booksToRender = books;
 
 function createBooks() {
   const container = document.querySelector(".book-container");
-
   container.innerHTML = "";
 
   booksToRender.forEach(function (book) {
@@ -33,7 +32,7 @@ createBooks();
 
 function removeFromList() {
   const deleteItem = event.target.dataset.item;
-  console.log(deleteItem);
+
   const newList = booksToRender.filter(function (item) {
     if (deleteItem !== item.isbn) {
       return true;
@@ -43,5 +42,3 @@ function removeFromList() {
   booksToRender = newList;
   createBooks();
 }
-
-// const filteredBooks = books.filter(filterItems);
