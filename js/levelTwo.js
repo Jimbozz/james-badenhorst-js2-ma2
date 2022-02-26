@@ -1,4 +1,4 @@
-// import createList from "./components/createList.js";
+import { displayMessage } from "./components/displayMessage.js";
 import { saveToStorage, getFromStorage } from "./utils/storage.js";
 import { listKey } from "./utils/settings.js";
 
@@ -34,6 +34,9 @@ function createList() {
   listItems.forEach(function (items) {
     listContainer.innerHTML += `<li><span>${items.name}</span><i class="uis uis-times-circle" style="font-size: x-large" data-id="${items.id}"></i></li>`;
   });
+  if (listItems.length === 0) {
+    displayMessage("error", "There is nothing in your list.", "ul");
+  }
 
   const deleteButton = document.querySelectorAll("li i");
   deleteButton.forEach(function (remove) {
@@ -43,11 +46,8 @@ function createList() {
 
 function removeFromList() {
   const id = parseInt(event.target.dataset.id);
-  console.log(event);
 
-  // const clicked = event.target.type;
   const newList = listItems.filter(function (item) {
-    console.log(item.id);
     if (id !== item.id) {
       return true;
     }
@@ -55,22 +55,15 @@ function removeFromList() {
 
   listItems = newList;
   updateList(listItems, id);
-  console.log(newList);
-
   createList();
+  saveToStorage(listKey, listItems);
 }
 
 function updateList(listItems, id) {
-  console.log("newList", listItems);
-  console.log("id", id);
-
   const thisItemIndex = listItems.findIndex(function (value) {
-    // console.log(id);
-
     if (value.id === id) {
       return true;
     }
   });
-
   return listItems;
 }

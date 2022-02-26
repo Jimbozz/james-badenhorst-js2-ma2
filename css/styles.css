@@ -40,3 +40,23 @@ body {
   color: red;
   background: rgba(255, 0, 0, 0.144);
 }
+.uis-times-circle {
+  color: red;
+}
+
+.list-container {
+  padding: 0px;
+}
+
+.list-container li {
+  background: lightgray;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0px;
+  border-radius: 3px;
+}
+
+li span {
+  margin-right: 1rem;
+}
